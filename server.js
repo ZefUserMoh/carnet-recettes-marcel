@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 // Routes publiques
 const recipeController = require('./controllers/recipeController');
-app.get('/', (req, res) => res.redirect('/carnet'));
+app.get('/', (req, res) => res.render('home', { title: 'Les Délices de Papy Marcel', activePage: 'accueil' }));
 app.get('/carnet', recipeController.getAllRecipesPublic);
 app.get('/recipe/:id', recipeController.getRecipeDetailPublic);
 

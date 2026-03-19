@@ -1,8 +1,8 @@
 <header class="main-header">
     <nav class="container">
-        <a href="/carnet" class="logo">MARCEL</a>
+        <a href="/" class="logo">MARCEL</a>
         <div class="nav-links">
-            <a href="/carnet">Accueil</a>
+            <a href="/" class="<%= (typeof activePage !== 'undefined' && activePage === 'accueil') ? 'active' : '' %>">Accueil</a>
             <a href="/carnet" class="<%= (typeof activePage !== 'undefined' && activePage === 'carnet') ? 'active' : '' %>">Le Carnet</a>
             <a href="/admin/dashboard" class="<%= (typeof activePage !== 'undefined' && activePage === 'admin') ? 'active' : '' %>">Administration</a>
         </div>
