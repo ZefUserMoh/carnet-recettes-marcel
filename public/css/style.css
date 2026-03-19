@@ -323,19 +323,17 @@ main.container::before {
 
 .steps li {
     margin-bottom: 30px;
-    position: relative;
-    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .step-number {
-    position: absolute;
-    left: 0;
-    top: 0;
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
     color: var(--accent);
     font-size: 1.8rem;
     line-height: 1;
+    margin-bottom: 6px;
 }
 
 .steps li p {
