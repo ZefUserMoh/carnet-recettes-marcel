@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connexion à MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Connecté avec succès à MongoDB'))
   .catch(err => console.error('❌ Erreur de connexion MongoDB:', err));
 
@@ -26,10 +26,6 @@ app.set('layout', 'layout');
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
-// On ajoute le dossier de la boutique pour qu'il soit accessible via /boutique
-
-// app.use('/boutique', express.static('C:/GeminiProjects/Les DÃ©lices de Papy/public/boutique'));
-app.use('/boutique', express.static('C:/GeminiProjects/Les Délices de Papy/public/boutique'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
