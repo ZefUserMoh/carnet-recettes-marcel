@@ -42,6 +42,19 @@ app.use('/', commentRoutes);
 // Routes d'administration (protégées)
 app.use('/admin', recipeRoutes);
 
+// TEMPORAIRE : route pour créer l'admin (à supprimer après utilisation)
+app.get('/setup-admin', async (req, res) => {
+    const User = require('./models/User');
+    try {
+        await User.deleteMany({});
+        const user = new User({ username: 'PapyMarcel', password: 'Marcel2026!' });
+        await user.save();
+        res.send('✅ Admin créé ! Login: PapyMarcel / Mot de passe: Marcel2026! — Supprimez cette route maintenant.');
+    } catch(err) {
+        res.send('❌ Erreur: ' + err.message);
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Le carnet de Papy Marcel est ouvert sur http://localhost:${PORT}`);
 });
