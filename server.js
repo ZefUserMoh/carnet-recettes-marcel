@@ -27,6 +27,8 @@ app.set('layout', 'layout');
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
 // On ajoute le dossier de la boutique pour qu'il soit accessible via /boutique
+
+// app.use('/boutique', express.static('C:/GeminiProjects/Les DÃ©lices de Papy/public/boutique'));
 app.use('/boutique', express.static('C:/GeminiProjects/Les Délices de Papy/public/boutique'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -34,7 +36,7 @@ app.use(cookieParser());
 
 // Routes publiques
 const recipeController = require('./controllers/recipeController');
-app.get('/', (req, res) => res.redirect('/boutique/index.html'));
+app.get('/', (req, res) => res.redirect('/carnet'));
 app.get('/carnet', recipeController.getAllRecipesPublic);
 app.get('/recipe/:id', recipeController.getRecipeDetailPublic);
 
