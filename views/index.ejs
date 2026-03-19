@@ -1,0 +1,34 @@
+<section class="hero">
+    <div class="papy-photo-container">
+        <img src="/images/marcel.png" alt="Papy Marcel" class="papy-photo">
+    </div>
+    <h1>Le Carnet de Recettes</h1>
+    <p class="subtitle">Héritage culinaire et secrets de confiserie de Papy Marcel</p>
+</section>
+
+<div class="recipes-container">
+    <% if (recipes.length === 0) { %>
+        <p class="no-recipe">Aucune recette n'est disponible pour le moment.</p>
+    <% } else { %>
+        <div class="public-recipes-grid">
+            <% recipes.forEach(recipe => { %>
+                <article class="recipe-card-public">
+                    <a href="/recipe/<%= recipe._id %>" class="card-link">
+                        <% if (recipe.imageUrl) { %>
+                            <div class="recipe-image" style="background-image: url('<%= recipe.imageUrl %>')"></div>
+                        <% } else { %>
+                            <div class="recipe-image placeholder" style="background-image: url('https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=500')"></div>
+                        <% } %>
+                        
+                        <div class="recipe-content">
+                            <span class="category">Confiserie Artisanale</span>
+                            <h3><%= recipe.title %></h3>
+                            <p><%= recipe.description.substring(0, 100) %>...</p>
+                            <span class="read-link">Consulter la recette</span>
+                        </div>
+                    </a>
+                </article>
+            <% }) %>
+        </div>
+    <% } %>
+</div>

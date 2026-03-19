@@ -1,0 +1,75 @@
+<article class="full-recipe">
+    <a href="/" class="btn-back">Retour au carnet</a>
+
+    <header class="recipe-header">
+        <span class="category">Recette Artisanale</span>
+        <h1><%= recipe.title %></h1>
+        <p class="recipe-desc"><%= recipe.description %></p>
+        
+        <% if (recipe.imageUrl) { %>
+            <div class="main-image-container">
+                <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" class="main-image">
+            </div>
+        <% } %>
+    </header>
+
+    <div class="recipe-body">
+        <section class="ingredients">
+            <h2>Ingrédients</h2>
+            <ul>
+                <% recipe.ingredients.forEach(item => { %>
+                    <li><%= item %></li>
+                <% }) %>
+            </ul>
+        </section>
+
+        <section class="steps">
+            <h2>Préparation</h2>
+            <ol>
+                <% recipe.steps.forEach((step, index) => { %>
+                    <li>
+                        <span class="step-number">Étape <%= index + 1 %></span>
+                        <p><%= step %></p>
+                    </li>
+                <% }) %>
+            </ol>
+        </section>
+    </div>
+
+    <hr class="separator">
+
+    <section class="comments-section">
+        <h3>Commentaires</h3>
+
+        <div class="comment-form">
+            <h4>Partagez votre avis</h4>
+            <form action="/recipe/<%= recipe._id %>/comment" method="POST">
+                <div class="form-group">
+                    <label for="author">Nom ou pseudo</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Votre message</label>
+                    <textarea id="content" name="content" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn">Publier le message</button>
+            </form>
+        </div>
+
+        <div class="comments-list">
+            <% if (comments.length === 0) { %>
+                <p class="no-comments">Aucun commentaire pour le moment.</p>
+            <% } else { %>
+                <% comments.forEach(comment => { %>
+                    <div class="comment-card">
+                        <div class="comment-header">
+                            <span class="author"><%= comment.author %></span>
+                            <span class="date"><%= new Date(comment.createdAt).toLocaleDateString('fr-FR') %></span>
+                        </div>
+                        <p class="content"><%= comment.content %></p>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </section>
+</article>
